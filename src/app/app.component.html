@@ -8,14 +8,14 @@
 
 
 
-  <div class="row text-center" *ngIf="posts">
+  <div class="row text-center" *ngIf="rates">
     <div class="col-sm">
       <p>Amount</p>
       <input type="number" id="amount" placeholder="1" (change)="onChangeInputValue($event)">
     </div>
     <div class="col-sm">
       <p>From</p>
-      <select  (change)="onChangeFromSelection($event)" [value] = "posts.base" > 
+      <select  (change)="onChangeFromSelection($event)" [value] = "rates.base" > 
           <!-- //base is euro by default now -->
           <option *ngFor="let currency of currencyList" 
           > {{currency}}</option>
@@ -44,10 +44,16 @@
 
 
 
-<div *ngIf = "rates" >
+<div *ngIf = "answer" >
     <h2> conversion result</h2>
   
     <h1>{{answerInputValue}} {{answerBaseSymbol}} = <span class="text-primary"> {{ answer }} {{answerSymbol}}</span></h1>
   
   
+  </div>
+
+
+  <div id="graph">
+
+
   </div>

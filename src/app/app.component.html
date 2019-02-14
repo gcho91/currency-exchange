@@ -11,11 +11,11 @@
   <div class="row text-center" *ngIf="rates">
     <div class="col-sm">
       <p>Amount</p>
-      <input type="number" id="amount" placeholder="1" (change)="onChangeInputValue($event)">
+      <input class="input-group" type="number" id="amount" placeholder="1" (change)="onChangeInputValue($event)">
     </div>
     <div class="col-sm">
       <p>From</p>
-      <select  (change)="onChangeFromSelection($event)" [value] = "rates.base" > 
+      <select class="custom-select" (change)="onChangeFromSelection($event)" [value] = "rates.base" > 
           <!-- //base is euro by default now -->
           <option *ngFor="let currency of currencyList" 
           > {{currency}}</option>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-sm">
       <p>To</p>
-      <select (change)="onChangeToSelection($event)">
+      <select class="custom-select" (change)="onChangeToSelection($event)">
           <option *ngFor="let currency of currencyList" value = "{{currency}}" 
           > {{currency}}</option>
         </select> 
@@ -33,27 +33,23 @@
 <br>
 
 <div class="text-center"> 
-  <button (click) = "getRates()">Convert</button>
-  <!-- <button (click)="reverse()">Reverse</button> -->
+  <button class="btn btn-primary" (click) = "getRates()">Convert</button>
 </div>
-
-
 
 <hr>
 
-
-
-
 <div *ngIf = "answer" >
-    <h2> conversion result</h2>
-  
+    <!-- <h2> conversion result</h2>   -->
     <h1>{{answerInputValue}} {{answerBaseSymbol}} = <span class="text-primary"> {{ answer }} {{answerSymbol}}</span></h1>
-  
-  
+
+    <!-- <p>daily rate</p> -->
+
+    <p>1 {{ answerBaseSymbol }} =   <span class="text-primary">{{answerRate}} {{ answerSymbol}}</span></p>
+
+    <div id="graph">
+      <p>cytoscape here</p>
+    </div>
+
+
   </div>
 
-
-  <div id="graph">
-
-
-  </div>

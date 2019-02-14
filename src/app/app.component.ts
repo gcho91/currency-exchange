@@ -36,9 +36,42 @@ export class AppComponent{
 
   ngOnInit(){
     this.inputValue = 1; //initialize input value to 1 on init
-    this.toSymbol ="AUD"; //initialize to first item on 'TO' dropdown, AUD. 
+    this.toSymbol ="AUD"; //initialize toSymbol
     this.updateRates(null, false);
   }
+
+  public updateRates(symbol: string, shouldCalculate: boolean ): void {
+    //updateRates runs once at init
+    //gets data from API and assigns this.rates with the response
+  
+    // null gets passed only on the first time and returns this.Url for initial api call
+    // this.rates is set
+    // baseSymbol, toRate are initialized at initializeValues
+      this.http.get<Currency>( this.getApiUrl(symbol)  )
+      .subscribe( (resp) => {
+          this.rates = resp;
+          this.initializeValues( resp );
+
+
+
+  // only runs after convert gets clicked 2nd time and onwards
+          if (shouldCalculate) {
+            this.calculateRate();
+          }
+      }
+      )
+  }
+  
+  initializeValues(resp: Currency): void {
+    if (this.currencyList.length === 1) {
+  
+      this.baseSymbol = resp.base; //initialize base to default euro
+      this.toRate = this.rates.rates['AUD'];
+      this.buildCurrencyList();
+    } 
+   }
+  
+
 
   buildCurrencyList(): void {
 // builds the currencyList which will be used in FROM and TO dropdowns
@@ -98,7 +131,6 @@ export class AppComponent{
     // this.convertRates is a callback that does just the calculation math
     // calculateRate assigns the answer to let answer
     let answer = this.convertRates(this.toSymbol, this.inputValue)
-    console.log(answer)
     this.answer = answer; //assigns above answer to this.answer
 
     //reassigns inputValue, baseSymbol, toRate, toSymbol to be displayed on component ONLY after recalculating
@@ -116,30 +148,6 @@ export class AppComponent{
     // multiplies the rate * unit amount
     return this.rates.rates[symbol] * amount;
 }
-
-public updateRates(symbol: string, shouldCalculate: boolean ): void {
-  // /getPosts runs once to initialize at ngInit
-
-    this.http.get<Currency>( this.getApiUrl(symbol)  )
-    .subscribe( (resp) => {
-        this.rates = resp;
-        this.initializeValues( resp );
-
-        if (shouldCalculate) {
-          this.calculateRate();
-        }
-    }
-    )
-}
-
-initializeValues(resp: Currency): void {
-  if (this.currencyList.length === 1) {
-
-    this.baseSymbol = resp.base; //initialize base to default euro
-    this.toRate = this.rates.rates['AUD'];
-    this.buildCurrencyList();
-  } 
- }
 
 
 

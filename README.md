@@ -1,28 +1,55 @@
-# CurrencyCalc
+# Arris Coding Challenge - Currency Calculator
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
-## Development server
+Tools Used:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Angular
+ExchangeRates API
+Bootstrap
+Moment.JS
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone to your local computer, `git clone https://github.com/gcho91/currency-exchange.git`
+2. Go into directory by `cd currency-exchange`
+3. `npm install` to download all dependencies
+4. `ng serve --open` to build & serve app locally
+4. go to [http://localhost:4200/]
 
-## Build
+### Big Picture Process of the Application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+There were two main requirements - to build an application that:
 
-## Running unit tests
+1) consumes API data from a foreign currency exchange rate application, and calculates the exchange rate from base currency to target currency
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2) Use above data to draw a line graph with nodes using Cytoscape.js
 
-## Running end-to-end tests
+In the big picture, the application is organized in the following way:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+-Module
+-Main Component (app.component.ts, html, spec, css)
+-Cytoscape Component (cytoscape.component.ts, html, spec, css)
+-Currency Class (currency.ts)
 
-## Further help
+The main component is responsible for performing the GET request from API, creating dropdown list of all currencies available, initializing all variables to be used throughout the application, and calculating values each time the button is clicked.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# currency-exchange
+Cytoscape Component is responsible for performing all logic related to Cytoscape.js, including node generation, getting historical rates info from API, and edge generation.
+
+Currency class is responsible for structuring the data coming from the exchange rate API, to be used in instances in the main component.
+
+Since there are many events happening simultaneously, my priority was to create and name each individual function/method to perform one duty, acting as callback to be used to update other variables to be used in another function.
+
+
+### Improvement Points
+
+I prioritized the goal of building the MVP application that fulfuills stated requirements. If given more time, I would gear towards: 
+
+- refactoring the code to take advantage of component-based architecture that Angular offers, with a different dedicated service (forex service) that would handle all of the logic in performing the GET request and recalculating values
+
+- isolating service and components so service performs most of the logic, leaving components to just display it
+
+- making the parent-child relationship of the components clear to make it easier for other developers to read and understand my architectural decisions
+
+- redesign the UI and reorganize content to make it more user-friendly, visually vibrant, and compliant with web accessibility standards
+

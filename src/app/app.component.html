@@ -1,55 +1,58 @@
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Currency Calculator</span>
+  <a class="btn btn-outline-primary" href="https://github.com/gcho91/currency-exchange" target="_blank">GitHub</a>
+</nav>
+
 <div class="container-fluid">
 
-
-<div class="text-center">
-  <h1>Currency Calculator</h1>
-  <p>Using exchangeratesapi.io/ to convert currency</p>
-</div>
-
-
+  <div class="text-center">
+    <h1>Currency Calculator</h1>
+    <p>Using <a href="https://exchangeratesapi.io/" target="_blank">exchangeratesapi.io</a> to convert currency</p>
+  </div>
 
   <div class="row text-center" *ngIf="rates">
+
     <div class="col-sm">
       <p>Amount</p>
       <input class="input-group" type="number" id="amount" placeholder="1" (change)="onChangeInputValue($event)">
     </div>
+
     <div class="col-sm">
       <p>From</p>
-      <select class="custom-select" (change)="onChangeFromSelection($event)" [value] = "rates.base" > 
-          <!-- //base is euro by default now -->
-          <option *ngFor="let currency of currencyList" 
-          > {{currency}}</option>
-        </select> 
+      <select class="custom-select" (change)="onChangeFromSelection($event)" [value]="rates.base">
+        <option *ngFor="let currency of currencyList"> {{currency}}</option>
+      </select>
     </div>
+
     <div class="col-sm">
       <p>To</p>
       <select class="custom-select" (change)="onChangeToSelection($event)">
-          <option *ngFor="let currency of currencyList" value = "{{currency}}" 
-          > {{currency}}</option>
-        </select> 
+        <option *ngFor="let currency of currencyList" value="{{currency}}"> {{currency}}</option>
+      </select>
     </div>
+    
   </div>
 
-<br>
+  <br>
 
-<div class="text-center"> 
-  <button class="btn btn-primary" (click) = "getRates()">Convert</button>
+  <div class="text-center">
+    <button class="btn btn-primary" (click)="getRates()">Convert</button>
+  </div>
+
+  <br>
+
+  <hr>
+
+  <div *ngIf="answer">
+
+    <div class="alert alert-primary text-center" role="alert">
+      <h2>{{answerInputValue}} {{answerBaseSymbol}} = <span class="text-primary"> {{ answer }} {{answerSymbol}}</span>
+      </h2>
+      <p>1 {{ answerBaseSymbol }} = <span class="text-primary">{{answerRate}} {{ answerSymbol}}</span></p>
+    </div>
+    <hr>
+
+    <app-cytoscape [baseCurrency]=answerBaseSymbol [targetCurrency]=answerSymbol></app-cytoscape>
+  </div>
+
 </div>
-
-<hr>
-
-<div *ngIf = "answer" >
-    <!-- <h2> conversion result</h2>   -->
-    <h1>{{answerInputValue}} {{answerBaseSymbol}} = <span class="text-primary"> {{ answer }} {{answerSymbol}}</span></h1>
-
-    <!-- <p>daily rate</p> -->
-
-    <p>1 {{ answerBaseSymbol }} =   <span class="text-primary">{{answerRate}} {{ answerSymbol}}</span></p>
-
-    <div id="graph">
-      <p>cytoscape here</p>
-    </div>
-
-
-  </div>
-

@@ -43,7 +43,7 @@ Since there are many events happening simultaneously, my priority was to create 
 
 ## Improvement Points
 
-I prioritized the goal of building the MVP application that fulfuills stated requirements. If given more time, I would gear towards: 
+I prioritized the goal of building the MVP application that fulfills stated requirements. If given more time, I would gear towards: 
 
 - Refactoring the code to take advantage of component-based architecture that Angular offers, with a different dedicated service (forex service) that would handle all of the logic in performing the GET request and recalculating values
 

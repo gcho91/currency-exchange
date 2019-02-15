@@ -7,8 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage" : "https://gcho91.github.io/currency-converter",
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",
@@ -22,6 +24,7 @@
     "bootstrap": "^4.3.0",
     "core-js": "^2.5.4",
     "cytoscape": "^3.4.1",
+    "gh-pages": "^2.0.1",
     "moment": "^2.24.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

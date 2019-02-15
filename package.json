@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy": "gh-pages -d dist"
+    "e2e": "ng e2e"
   },
   "homepage" : "https://gcho91.github.io/currency-converter",
   "private": true,

@@ -51,6 +51,8 @@ I prioritized the goal of building the MVP application that fulfills stated requ
 
 - Isolating service and components so service performs most of the logic, leaving components to simply display it
 
+- Changing window size of Cytoscape and how the nodes are named for data visualization that gives meaning to data
+
 - Making the parent-child relationship of the components clear to make it easier for other developers to read and understand my architectural decisions
 
 - Redesign the UI and reorganize content to make it more user-friendly, visually vibrant, and compliant with web accessibility standards

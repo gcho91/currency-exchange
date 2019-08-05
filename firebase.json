@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/angular7app",
+    "public": "dist/currency-calc",
     "ignore": [
       "firebase.json",
       "**/.*",
